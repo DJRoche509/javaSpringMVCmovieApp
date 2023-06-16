@@ -1,7 +1,9 @@
 package com.javaunit3.springmvc;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
+@ComponentScan
 public class MovieApp{
     public static void main(String[]args){
         System.out.println("My first Maven App in composition");
@@ -14,7 +16,7 @@ public class MovieApp{
         Movie bestMovie = bestMovieService.getBestMovie() ;
         System.out.println("Title: " + bestMovie.getTitle());
         System.out.println("Maturity Rating: " + bestMovie.getMaturityRating());
-        System.out.println("Genre: " + bestMovie.getMaturityRating());
+        System.out.println("Genre: " + bestMovie.getGenre());
 
     }
 }
