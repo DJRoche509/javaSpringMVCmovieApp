@@ -1,19 +1,28 @@
 package com.javaunit3.springmvc;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
-@SpringBootApplication
+@Controller
 public class MovieController {
+    @Autowired
+    private BestMovieService bestMovieService;
+
+    @Autowired
+    private SessionFactory sessionFactory;
+
     @RequestMapping("/")
     public String getIndexPage(){
         return "index";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/bestMovie")
     public String getBestMoviePage(Model model){
         BestMovieService bestMovieService = null;
         model.addAttribute("BestMovie", bestMovieService.getBestMovie().getTitle());
@@ -21,7 +30,7 @@ public class MovieController {
     }
 
     @RequestMapping("/voteForBestMovieForm")
-    public String voteForBestMovieFormPage() {
+    public String voteForBestMovieFormPage(Model model) {
         return "voteForBestMovie";
     }
 
